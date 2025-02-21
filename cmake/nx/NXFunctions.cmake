@@ -15,6 +15,7 @@ function(nx_create_nacp TARGET NAME AUTHOR VERSION)
         OUTPUT_VARIABLE OUTPUT
         ERROR_VARIABLE ERROR
         RESULTS_VARIABLE RESULTS
+        COMMAND_ECHO STDOUT
     )
 
 endfunction()
@@ -32,6 +33,7 @@ function(nx_create_nro TARGET ICON)
         OUTPUT_VARIABLE OUTPUT
         ERROR_VARIABLE ERROR
         RESULTS_VARIABLE RESULTS
+        COMMAND_ECHO STDOUT
     )
 
 endfunction()

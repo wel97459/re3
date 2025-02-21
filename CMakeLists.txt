@@ -102,11 +102,11 @@ if(${PROJECT}_INSTALL)
 endif()
 
 if(NINTENDO_SWITCH)
-    SET(NX_ICON "${CMAKE_CURRENT_BINARY_DIR}/res/logo_256.jpg")
+    SET(NX_ICON "${CMAKE_CURRENT_BINARY_DIR}/res/images/logo_256.jpg")
     re3_platform_target(
         "${EXECUTABLE}"
-        " GTA III reversed"
-        " ${VERSION}-${GIT_SHA1}" 
-        " ${NX_ICON}"
+        "GTA VC reversed"
+        "${VERSION}-${GIT_SHA1}" 
+        "${NX_ICON}"
     )
 endif()
