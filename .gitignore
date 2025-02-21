@@ -355,9 +355,16 @@ vendor/glfw-3.3.2.bin.WIN64/
 
 sdk/
 
-codewarrior/reVC.mcp
-codewarrior/reVC_Data/
+codewarrior/re3.mcp
+codewarrior/re3_Data/
 codewarrior/Release/
 codewarrior/Debug/
 
 src/extras/GitSHA1.cpp
+
+CMakeFiles
+src/CMakeFiles
+re3*
+cmake_install.cmake
+CMakeCache.txt
+Makefile

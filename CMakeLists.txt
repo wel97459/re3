@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 set(EXECUTABLE reVC)
 set(PROJECT REVC)
+set(VERSION 1.0.0)
 
 project(${EXECUTABLE} C CXX)
 set(${PROJECT}_AUTHOR "${PROJECT} Team")
@@ -11,10 +12,10 @@ include(GetGitRevisionDescription)
 get_git_head_revision(GIT_REFSPEC GIT_SHA1 "ALLOW_LOOKING_ABOVE_CMAKE_SOURCE_DIR")
 message(STATUS "Building ${CMAKE_PROJECT_NAME} GIT SHA1: ${GIT_SHA1}")
 
-
 if(NINTENDO_SWITCH)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/nx")
     include(NXFunctions)
+    find_package(SDL2 REQUIRED)
 endif()
 
 if(NOT COMMAND reVC_platform_target)
@@ -30,6 +31,7 @@ endif()
 
 set(${PROJECT}_AUDIO "OAL" CACHE STRING "Audio")
 
+option(${PROJECT}_INSTALL "Enable installation of ${EXECUTABLE} + gamefiles" OFF)
 option(${PROJECT}_WITH_OPUS "Build ${EXECUTABLE} with opus support" OFF)
 option(${PROJECT}_WITH_LIBSNDFILE "Build ${EXECUTABLE} with libsndfile (instead of internal decoder)" OFF)
 
@@ -97,4 +99,14 @@ if(${PROJECT}_INSTALL)
     set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}")
     set(CPACK_GENERATOR "TXZ")
     include(CPack)
+endif()
+
+if(NINTENDO_SWITCH)
+    SET(NX_ICON "${CMAKE_CURRENT_BINARY_DIR}/res/logo_256.jpg")
+    re3_platform_target(
+        "${EXECUTABLE}"
+        " GTA III reversed"
+        " ${VERSION}-${GIT_SHA1}" 
+        " ${NX_ICON}"
+    )
 endif()
